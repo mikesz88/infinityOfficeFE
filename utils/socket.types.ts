@@ -1,0 +1,52 @@
+export interface ServerToClientEvents {
+  roomCreated: (name: string, description: string, id: string) => void;
+  userTypingUpdate: (
+    typingUsers: { [T: string]: string },
+    roomId?: string
+  ) => void;
+  messageCreated: (
+    messageBody: string,
+    userId: string,
+    businessId: string,
+    id: string,
+    timestamp: Date
+  ) => void;
+  created: () => void;
+  joined: () => void;
+  full: () => void;
+  ready: () => void;
+  iceCandidate: (candidate: any) => void;
+  offer: (offer: any) => void;
+  answer: (answer: any) => void;
+  leave: () => void;
+  chatMessage: (
+    messageBody: string,
+    roomId: string,
+    userId: string,
+    businessId: string
+  ) => void;
+}
+
+export interface ClientToServerEvents {
+  newRoom: (name: string, description: string, businessId: string) => void;
+  newMessage: (
+    messageBody: string,
+    userId: string,
+    roomId: string,
+    businessId: string
+  ) => void;
+  startType: (displayName: string, roomId: string) => void;
+  stopType: (displayName: string) => void;
+  join: (roomName: string) => void;
+  ready: (roomName: string) => void;
+  iceCandidate: (candidate: any, roomName: string) => void;
+  offer: (offer: any, roomName: string) => void;
+  answer: (answer: any, roomName: string) => void;
+  leave: (roomName: string) => void;
+  chatMessage: (
+    messageBody: string,
+    roomId: string,
+    userId: string,
+    businessId: string
+  ) => void;
+}
